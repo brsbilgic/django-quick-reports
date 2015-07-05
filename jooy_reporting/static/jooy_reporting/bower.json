@@ -1,0 +1,23 @@
+{
+  "name": "static",
+  "version": "0.0.1",
+  "authors": [
+    "baris bilgic <brsbilgic@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularjs": "~1.4.1",
+    "angular-ui-router": "~0.2.15",
+    "angular-route": "~1.4.1",
+    "flot": "~0.8.3",
+    "angular-flot": "~0.0.9",
+    "flot.tooltip": "~0.8.5"
+  }
+}

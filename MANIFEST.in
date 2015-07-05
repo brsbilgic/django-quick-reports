@@ -1,0 +1,2 @@
+recursive-include jooy_reporting/templates *
+recursive-include jooy_reporting/static *

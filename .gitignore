@@ -1,0 +1,9 @@
+*.log
+*.pot
+*.pyc
+*.*~
+.DS_Store
+.idea/*
+db.sqlite3
+dist/*
+django_jooy_reporting.egg-info/*

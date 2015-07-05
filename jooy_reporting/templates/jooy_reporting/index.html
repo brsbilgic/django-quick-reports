@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="jrApp">
+<head>
+    <title>Django Jooy Reports</title>
+
+    <base href="{% url 'jooy_reporting' %}"/>
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+    {% include 'jooy_reporting/static/stylesheets.html' %}
+</head>
+
+<body>
+
+<div class="wrapper">
+<header class="topnavbar-wrapper">
+    <nav role="navigation" class="navbar topnavbar">
+        <div class="navbar-header">
+            <a href="{% url 'jooy_reporting' %}" class="navbar-brand">
+                Jooy Reports
+            </a>
+        </div>
+        <div class="nav-wrapper">
+        </div>
+    </nav>
+</header>
+
+<div ui-view></div>
+<div ui-sref="layout"></div>
+
+
+
+<footer class="footer">
+    <span>Jooy Reports</span>
+</footer>
+</div>
+
+{% include 'jooy_reporting/static/javascripts.html' %}
+</body>
+</html>

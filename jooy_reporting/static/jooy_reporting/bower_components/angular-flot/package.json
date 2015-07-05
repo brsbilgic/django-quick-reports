@@ -1,0 +1,8 @@
+{
+    "name": "angular-flot",
+    "version": "0.0.9",
+    "description": "An Angular directive to wrap Flotcharts.",
+    "main": "angular-flot.js",
+    "author": "Lorenzo Villani <lvillani@develer.com>",
+    "license": "MIT"
+}
