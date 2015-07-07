@@ -47,11 +47,6 @@ Add ``JooyReport`` class to any model that you want to have daily reports and se
     
         class JooyReport():
             date_field = "created_at"
-
-
-            'PASSWORD': 'LOCAL_DB_PASSWORD',
-        }
-    }
  
  When you visit ``http://127.0.0.1:8000/reports/`` you can find your registered models and when you click any of them, you can see the report for last 14 days. 
  
