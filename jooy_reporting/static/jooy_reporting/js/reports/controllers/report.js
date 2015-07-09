@@ -16,7 +16,7 @@
         activate();
         function activate() {
             console.log($stateParams);
-            Reports.get($stateParams.contentTypeId)
+            Reports.get($stateParams.contentTypeId, $stateParams.reportSlug)
                 .then(fnSuccess);
 
             function fnSuccess(data) {
@@ -46,7 +46,13 @@
                         mode:"time",
                         minTickSize: [1, "day"],
                         timeformat: "%d/%m/%y"
+                    },
+                    yaxis: {
+                        min: 0,
+                        minTickSize: 5,
+                        tickDecimals:0
                     }
+
                 };
 
             }

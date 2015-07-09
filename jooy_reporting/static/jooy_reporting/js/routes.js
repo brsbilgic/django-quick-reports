@@ -22,7 +22,7 @@
                 templateUrl: '/static/jooy_reporting/js/layout/views/layout.html'
             })
             .state('layout.reports', {
-                url: ':contentTypeId/chart/',
+                url: ':contentTypeId/chart/?reportSlug',
                 controller: 'ReportController',
                 controllerAs: 'vm',
                 templateUrl: '/static/jooy_reporting/js/reports/views/report.html'

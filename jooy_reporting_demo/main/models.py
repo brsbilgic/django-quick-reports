@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import Q
 from django.utils import timezone
 
 
@@ -21,7 +22,7 @@ class Article(models.Model):
     author = models.ForeignKey(User)
     created_at = models.DateTimeField(default=timezone.now)
 
-    objects = models.Manager() # The default manager.
+    objects = models.Manager()  # The default manager.
     published_objects = PublishedArticleManager()
 
     class Meta:
@@ -32,6 +33,16 @@ class Article(models.Model):
 
     class JooyReport():
         date_field = "created_at"
+        report_sets = (
+            {
+                "name": "Published",
+                "query": Q(status=1)
+            },
+            {
+                "name": "Draft",
+                "query": Q(status=0)
+            }
+        )
 
 
 class Comment(models.Model):
@@ -45,4 +56,3 @@ class Comment(models.Model):
 
     def __unicode__(self):
         return self.title
-

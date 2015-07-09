@@ -23,6 +23,7 @@ class ModelsView(generics.ListAPIView):
 
         return ct_list
 
+
 class ModelChartView(generics.GenericAPIView):
     paginate_by = None
 
@@ -47,16 +48,28 @@ class ModelChartView(generics.GenericAPIView):
                     date_min = datetime.combine(day, time.min)
                     date_max = datetime.combine(day, time.max)
 
+                    report_slug = request.GET.get("report_slug", None)
+
                     date_filter = "%s__%s" % (date_field, "range")
                     kwargs = {
                         date_filter: (date_min, date_max)
                     }
+                    query = ct_class.objects.all()
+                    if report_slug is not None:
+                        report_set = getattr(meta, 'report_sets', None)
+                        if report_set is not None:
+                            for report in report_set:
+                                if report["name"] == report_slug:
+                                    query = query.filter(report["query"])
+                                    break
+
+                    num = query.filter(**kwargs).count()
 
                     labels.append(day)
                     timestamp = (date_min - datetime(1970, 1, 1)).total_seconds()
-                    data.update({timestamp: ct_class.objects.filter(**kwargs).count()})
+                    data.update({timestamp: num})
 
-        context["data"] = [(k*1000,v) for k,v in data.items()]
+        context["data"] = [(k * 1000, v) for k, v in data.items()]
         context["ct"] = ContentTypeSerializer(ct).data
 
         return Response(context, status=HTTP_200_OK)
