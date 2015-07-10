@@ -12,8 +12,8 @@
             'get': get
         };
 
-        function get(modelName, reportSlug) {
-            return $http.get('api/models/'+modelName+'/?report_slug='+reportSlug);
+        function get(appLabel, modelName, reportSlug) {
+            return $http.get('api/apps/'+appLabel+'/'+modelName+'/?report_slug='+reportSlug);
         }
     }
 

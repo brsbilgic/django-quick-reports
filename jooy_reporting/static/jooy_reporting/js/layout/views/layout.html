@@ -3,21 +3,26 @@
         <nav class="sidebar">
             <div class="content-wrapper">
                 <h3 style="margin-bottom: 0;">
-                    Models
+                    Apps
                 </h3>
             </div>
             <ul class="nav">
-                <li ng-repeat="model in vm.models">
-                    <a ui-sref="layout.reports({ 'modelName': '{{ model.name }}', 'reportSlug':null })">{{ model.name }}</a>
-
+                <li ng-repeat="app in vm.apps">
+                    {{ app.label }}
                     <ul>
-                        <li ng-repeat="report in model.report_set">
-                            <a ui-sref="layout.reports({ 'modelName': '{{ model.name }}', 'reportSlug':'{{ report.slug }}'} )">{{ report.name }}</a>
+                        <li ng-repeat="model in app.models">
+                            <a ui-sref="layout.reports({'appLabel':'{{ app.label }}', 'modelName': '{{ model.name }}', 'reportSlug':null })">{{ model.name }}</a>
+
+                            <ul>
+                                <li ng-repeat="report in model.reports">
+                                    <a ui-sref="layout.reports({'appLabel':'{{ app.label }}', 'modelName': '{{ model.name }}', 'reportSlug':'{{ report.slug }}'} )">{{ report.name }}</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
             </ul>
-            <p ng-if="!vm.models.length" style="padding: 0 20px">
+            <p ng-if="!vm.apps.length" style="padding: 0 20px">
                 Please register at least one model
             </p>
         </nav>

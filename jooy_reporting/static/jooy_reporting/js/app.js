@@ -7,7 +7,7 @@
             'jrApp.config',
             'jrApp.layout',
             'jrApp.report',
-            'jrApp.model'
+            'jrApp.app'
         ])
         .run(run);
 

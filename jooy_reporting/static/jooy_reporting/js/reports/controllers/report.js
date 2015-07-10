@@ -6,9 +6,6 @@
         .controller('ReportController', ReportController);
 
     ReportController.inject = ['$stateParams', 'Reports'];
-
-    console.log("1");
-
     function ReportController($stateParams, Reports) {
         var vm = this;
 
@@ -16,7 +13,7 @@
         activate();
         function activate() {
             console.log($stateParams);
-            Reports.get($stateParams.modelName, $stateParams.reportSlug)
+            Reports.get($stateParams.appLabel, $stateParams.modelName, $stateParams.reportSlug)
                 .then(fnSuccess);
 
             function fnSuccess(data) {

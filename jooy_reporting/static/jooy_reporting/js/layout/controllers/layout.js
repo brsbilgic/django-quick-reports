@@ -5,19 +5,19 @@
         .module('jrApp.layout.controllers')
         .controller('LayoutController', LayoutController);
 
-    LayoutController.inject = ['Models'];
+    LayoutController.inject = ['App'];
 
-    function LayoutController(Models) {
+    function LayoutController(App) {
         var vm = this;
 
         activate();
         function activate() {
 
-            Models.all()
+            App.all()
                 .then(fnSuccess);
 
             function fnSuccess(data) {
-                vm.models = data.data;
+                vm.apps = data.data;
             }
         }
     }

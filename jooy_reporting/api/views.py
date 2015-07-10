@@ -15,18 +15,25 @@ class ModelsView(generics.GenericAPIView):
     paginate_by = None
 
     def get(self, request, *args, **kwargs):
-        model_list = []
-        for model_name in site.get_models().keys():
-            report_list = []
+        app_list = []
 
-            for slug, report in site.get_reports_for_model(model_name).iteritems():
-                report_list.append({"slug": slug,
-                                    "name": report["name"]})
+        for app_label in site.get_apps().keys():
+            model_list = []
 
-            model_list.append({"name": model_name,
-                               "report_set" : report_list})
+            for model_name in site.get_models(app_label):
+                report_list = []
 
-        return Response(model_list, status=HTTP_200_OK)
+                for slug, report in site.get_reports_for_model(app_label, model_name).iteritems():
+
+                    report_list.append({"slug": slug,
+                                        "name": report["name"]})
+
+                model_list.append({"name": model_name,
+                                   "reports": report_list})
+
+            app_list.append({"label": app_label,
+                             "models": model_list})
+        return Response(app_list, status=HTTP_200_OK)
 
 
 class ReportChartView(generics.GenericAPIView):
@@ -34,14 +41,15 @@ class ReportChartView(generics.GenericAPIView):
 
     def get(self, request, *args, **kwargs):
         MAX_HISTORY = 14
-
+        app_label = kwargs.get("app_label", None)
         model_name = kwargs.get("model_name", None)
+
         ct = get_object_or_404(ContentType, model=model_name)
         ct_class = ct.model_class()
 
-        report_model = site.get_model(model_name)
+        report_model = site.get_model(app_label, model_name)
         date_field = report_model["date_field"]
-        report = site.get_model_report(model_name, request.GET.get("report_slug", None))
+        report = site.get_model_report(app_label, model_name, request.GET.get("report_slug", None))
 
         days = [(datetime.today() - timedelta(days=day)).date() for day in range(MAX_HISTORY)]
         date_base = pytz.utc.localize(datetime(1970, 1, 1))
