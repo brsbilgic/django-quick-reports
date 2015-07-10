@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="django-jooy-reporting",
-    version="0.0.1",
+    version="0.0.2",
     author="Baris Bilgic",
     author_email="baris@jooysoft.com",
     description=("Ready-to-user basic django reports"),

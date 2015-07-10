@@ -3,71 +3,71 @@ from datetime import datetime, timedelta, time, date
 import collections
 from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import get_object_or_404
+import pytz as pytz
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
 from jooy_reporting.api.serializers import ContentTypeSerializer
+from jooy_reporting.sites import site
 
 
-class ModelsView(generics.ListAPIView):
-    queryset = ContentType.objects.all()
-    serializer_class = ContentTypeSerializer
+class ModelsView(generics.GenericAPIView):
     paginate_by = None
 
-    def get_queryset(self):
+    def get(self, request, *args, **kwargs):
+        model_list = []
+        for model_name in site.get_models().keys():
+            report_list = []
 
-        ct_list = []
-        for ct in self.queryset:
-            if getattr(ct.model_class(), 'JooyReport', None):
-                ct_list.append(ct)
+            for slug, report in site.get_reports_for_model(model_name).iteritems():
+                report_list.append({"slug": slug,
+                                    "name": report["name"]})
 
-        return ct_list
+            model_list.append({"name": model_name,
+                               "report_set" : report_list})
+
+        return Response(model_list, status=HTTP_200_OK)
 
 
-class ModelChartView(generics.GenericAPIView):
+class ReportChartView(generics.GenericAPIView):
     paginate_by = None
 
     def get(self, request, *args, **kwargs):
         MAX_HISTORY = 14
 
-        ct = get_object_or_404(ContentType, pk=kwargs.get("content_type_id", 0))
+        model_name = kwargs.get("model_name", None)
+        ct = get_object_or_404(ContentType, model=model_name)
         ct_class = ct.model_class()
+
+        report_model = site.get_model(model_name)
+        date_field = report_model["date_field"]
+        report = site.get_model_report(model_name, request.GET.get("report_slug", None))
+
+        days = [(datetime.today() - timedelta(days=day)).date() for day in range(MAX_HISTORY)]
+        date_base = pytz.utc.localize(datetime(1970, 1, 1))
 
         context = {}
         labels = []
         data = collections.OrderedDict()
-        meta = getattr(ct_class, 'JooyReport', None)
+        for day in days:
 
-        if meta is not None:
-            date_field = getattr(meta, 'date_field', None)
-            if date_field is not None:
+            date_min = pytz.utc.localize(datetime.combine(day, time.min))
+            date_max = pytz.utc.localize(datetime.combine(day, time.max))
 
-                days = [(datetime.today() - timedelta(days=day)).date() for day in range(MAX_HISTORY)]
+            date_filter = "%s__%s" % (date_field, "range")
+            kwargs = {
+                date_filter: (date_min, date_max)
+            }
+            query = ct_class.objects.all()
+            if report is not None:
+                query = query.filter(report["query"])
 
-                for day in days:
-                    date_min = datetime.combine(day, time.min)
-                    date_max = datetime.combine(day, time.max)
+            num = query.filter(**kwargs).count()
 
-                    report_slug = request.GET.get("report_slug", None)
+            labels.append(day)
 
-                    date_filter = "%s__%s" % (date_field, "range")
-                    kwargs = {
-                        date_filter: (date_min, date_max)
-                    }
-                    query = ct_class.objects.all()
-                    if report_slug is not None:
-                        report_set = getattr(meta, 'report_sets', None)
-                        if report_set is not None:
-                            for report in report_set:
-                                if report["name"] == report_slug:
-                                    query = query.filter(report["query"])
-                                    break
-
-                    num = query.filter(**kwargs).count()
-
-                    labels.append(day)
-                    timestamp = (date_min - datetime(1970, 1, 1)).total_seconds()
-                    data.update({timestamp: num})
+            timestamp = (date_min - date_base).total_seconds()
+            data.update({timestamp: num})
 
         context["data"] = [(k * 1000, v) for k, v in data.items()]
         context["ct"] = ContentTypeSerializer(ct).data

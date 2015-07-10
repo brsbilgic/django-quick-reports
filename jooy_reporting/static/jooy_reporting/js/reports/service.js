@@ -12,8 +12,8 @@
             'get': get
         };
 
-        function get(content_type_id, report_slug) {
-            return $http.get('api/models/'+content_type_id+'/chart/?report_slug='+report_slug);
+        function get(modelName, reportSlug) {
+            return $http.get('api/models/'+modelName+'/?report_slug='+reportSlug);
         }
     }
 

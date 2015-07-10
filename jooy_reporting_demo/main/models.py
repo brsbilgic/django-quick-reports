@@ -33,7 +33,7 @@ class Article(models.Model):
 
     class JooyReport():
         date_field = "created_at"
-        report_sets = (
+        report_set = (
             {
                 "name": "Published",
                 "query": Q(status=1)

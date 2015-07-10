@@ -16,7 +16,7 @@
         activate();
         function activate() {
             console.log($stateParams);
-            Reports.get($stateParams.contentTypeId, $stateParams.reportSlug)
+            Reports.get($stateParams.modelName, $stateParams.reportSlug)
                 .then(fnSuccess);
 
             function fnSuccess(data) {

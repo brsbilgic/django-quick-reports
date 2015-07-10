@@ -8,11 +8,11 @@
             </div>
             <ul class="nav">
                 <li ng-repeat="model in vm.models">
-                    <a ui-sref="layout.reports({ 'contentTypeId': {{ model.id }}, 'reportSlug':null })">{{ model.model }}</a>
+                    <a ui-sref="layout.reports({ 'modelName': '{{ model.name }}', 'reportSlug':null })">{{ model.name }}</a>
 
                     <ul>
                         <li ng-repeat="report in model.report_set">
-                            <a ui-sref="layout.reports({ 'contentTypeId': {{ model.id }}, 'reportSlug':'{{report}}'})">{{ report }}</a>
+                            <a ui-sref="layout.reports({ 'modelName': '{{ model.name }}', 'reportSlug':'{{ report.slug }}'} )">{{ report.name }}</a>
                         </li>
                     </ul>
                 </li>
