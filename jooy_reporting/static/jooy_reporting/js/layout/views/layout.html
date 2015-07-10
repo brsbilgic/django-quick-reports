@@ -8,14 +8,16 @@
             </div>
             <ul class="nav">
                 <li ng-repeat="app in vm.apps">
-                    {{ app.label }}
+                    <div class="heading">
+                        {{ app.label }}
+                    </div>
                     <ul>
                         <li ng-repeat="model in app.models">
-                            <a ui-sref="layout.reports({'appLabel':'{{ app.label }}', 'modelName': '{{ model.name }}', 'reportSlug':null })">{{ model.name }}</a>
+                            <a  ui-sref-active="active" ui-sref="layout.reports({'appLabel':'{{ app.label }}', 'modelName': '{{ model.name }}', 'reportSlug':null })">{{ model.name }}</a>
 
                             <ul>
                                 <li ng-repeat="report in model.reports">
-                                    <a ui-sref="layout.reports({'appLabel':'{{ app.label }}', 'modelName': '{{ model.name }}', 'reportSlug':'{{ report.slug }}'} )">{{ report.name }}</a>
+                                    <a  ui-sref-active="active" ui-sref="layout.reports({'appLabel':'{{ app.label }}', 'modelName': '{{ model.name }}', 'reportSlug':'{{ report.slug }}'} )">{{ report.name }}</a>
                                 </li>
                             </ul>
                         </li>

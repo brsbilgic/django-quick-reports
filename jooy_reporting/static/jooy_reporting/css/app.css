@@ -1,6 +1,7 @@
 body {
     min-height: 100%;
     background-color: #f5f7fa;
+    font-family: "Source Sans Pro", sans-serif;
 }
 
 html, body {
@@ -12,18 +13,39 @@ a {
 }
 
 .nav {
-    cursor: pointer;
+
 }
 
-.nav > li {
+.nav ul{
+    list-style: none;
+    padding-left: 15px;
+}
+
+.nav li {
     position: relative;
     display: block;
+    padding-top: 8px;
 }
 
-.nav > li > a {
+.nav li a.active {
+    color: #23b7e5;
+}
+
+.nav > li .heading {
     position: relative;
     display: block;
     padding: 10px 15px;
+    color: #8E9296;
+    font-size: 13px;
+    cursor: default;
+    background-color: #f9f9f9;
+}
+
+.nav li a {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    color: #515253;
 }
 
 .wrapper {
@@ -158,4 +180,14 @@ footer {
     border-top: 1px solid #e4eaec;
     padding: 20px;
     z-index: 109;
+}
+
+nav > li {
+}
+nav > li > a,
+nav > li > .nav-item {
+  padding: 12px 24px;
+  color: #515253;
+  letter-spacing: .025em;
+  font-weight: normal;
 }

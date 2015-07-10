@@ -78,6 +78,10 @@ class ReportChartView(generics.GenericAPIView):
             data.update({timestamp: num})
 
         context["data"] = [(k * 1000, v) for k, v in data.items()]
-        context["ct"] = ContentTypeSerializer(ct).data
+        context["app_label"] = app_label
+        context["model_name"] = model_name
+        if report is not None:
+            context["report"] = report["name"]
+
 
         return Response(context, status=HTTP_200_OK)

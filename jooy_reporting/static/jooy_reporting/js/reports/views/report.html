@@ -1,8 +1,15 @@
 <h3 class="">
-    {{ vm.ct.model }}
+    {{ vm.app_label }} :: {{ vm.model_name }} <span ng-if="vm.report" >:: {{ vm.report }}</span>
 </h3>
 <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-9 text-center">
+        <h4 ng-if="vm.report">
+            # of {{ vm.model_name }} objects
+        </h4>
+        <h2 ng-if="!vm.report">
+            # of {{ vm.report }} {{ vm.model_name }} objects
+        </h2>
+
         <flot dataset="vm.myData" options="vm.myChartOptions" height="440px"></flot>
     </div>
     <div class="col-md-3">

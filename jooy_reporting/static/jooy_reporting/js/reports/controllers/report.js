@@ -18,7 +18,9 @@
 
             function fnSuccess(data) {
                 vm.data = data.data.data;
-                vm.ct = data.data.ct;
+                vm.app_label = data.data.app_label;
+                vm.model_name = data.data.model_name;
+                vm.report = data.data.report;
                 vm.myData = [data.data.data];
 
 
