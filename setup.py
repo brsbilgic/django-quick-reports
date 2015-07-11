@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="django-quick-reports",
-    version="0.0.2",
+    version="0.1.0",
     author="Baris Bilgic",
     author_email="baris@jooysoft.com",
     description=("Ready-to-use basic django reports"),
