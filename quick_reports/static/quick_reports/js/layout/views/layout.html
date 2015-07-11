@@ -1,0 +1,41 @@
+<div class="aside">
+    <div class="aside-inner">
+        <nav class="sidebar">
+            <div class="content-wrapper">
+                <h3 style="margin-bottom: 0;">
+                    Apps
+                </h3>
+            </div>
+            <ul class="nav">
+                <li ng-repeat="app in vm.apps">
+                    <div class="heading">
+                        {{ app.label }}
+                    </div>
+                    <ul>
+                        <li ng-repeat="model in app.models">
+                            <a  ui-sref-active="active" ui-sref="layout.reports({'appLabel':'{{ app.label }}', 'modelName': '{{ model.name }}', 'reportSlug':null })">{{ model.name }}</a>
+
+                            <ul>
+                                <li ng-repeat="report in model.reports">
+                                    <a  ui-sref-active="active" ui-sref="layout.reports({'appLabel':'{{ app.label }}', 'modelName': '{{ model.name }}', 'reportSlug':'{{ report.slug }}'} )">{{ report.name }}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <p ng-if="!vm.apps.length" style="padding: 0 20px">
+                Please register at least one model
+            </p>
+        </nav>
+    </div>
+</div>
+<section>
+    <div class="content-wrapper">
+        <div ui-view>
+            <h3>
+                Welcome to Quick Reports
+            </h3>
+        </div>
+    </div>
+</section>

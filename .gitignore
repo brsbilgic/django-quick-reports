@@ -6,4 +6,4 @@
 .idea/*
 db.sqlite3
 dist/*
-django_jooy_reporting.egg-info/*
+django_quick_reports.egg-info/*

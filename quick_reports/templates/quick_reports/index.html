@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="jrApp">
+<head>
+    <title>Django Quick Reports</title>
+
+    <base href="{% url 'quick_reports' %}"/>
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+    {% include 'quick_reports/static/stylesheets.html' %}
+</head>
+
+<body>
+
+<div class="wrapper">
+<header class="topnavbar-wrapper">
+    <nav role="navigation" class="navbar topnavbar">
+        <div class="navbar-header">
+            <a href="{% url 'quick_reports' %}" class="navbar-brand">
+                Quick Reports
+            </a>
+        </div>
+        <div class="nav-wrapper">
+        </div>
+    </nav>
+</header>
+
+<div ui-view></div>
+<div ui-sref="layout"></div>
+
+
+
+<footer class="footer">
+    <span>Quick Reports</span>
+</footer>
+</div>
+
+{% include 'quick_reports/static/javascripts.html' %}
+</body>
+</html>

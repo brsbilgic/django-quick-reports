@@ -1,2 +1,2 @@
-recursive-include jooy_reporting/templates *
-recursive-include jooy_reporting/static *
+recursive-include quick_reports/templates *
+recursive-include quick_reports/static *

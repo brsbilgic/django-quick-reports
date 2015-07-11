@@ -1,0 +1,1 @@
+default_app_config = 'quick_reports.apps.ReportConfig'

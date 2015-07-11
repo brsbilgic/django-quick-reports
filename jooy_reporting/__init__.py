@@ -1,1 +1,0 @@
-default_app_config = 'jooy_reporting.apps.ReportConfig'
