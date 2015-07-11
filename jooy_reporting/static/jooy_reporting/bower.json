@@ -18,6 +18,7 @@
     "angular-route": "~1.4.1",
     "flot": "~0.8.3",
     "angular-flot": "~0.0.9",
-    "flot.tooltip": "~0.8.5"
+    "flot.tooltip": "~0.8.5",
+    "flot-spline": "~0.0.1"
   }
 }

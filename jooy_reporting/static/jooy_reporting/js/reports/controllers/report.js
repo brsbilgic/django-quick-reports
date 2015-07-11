@@ -27,10 +27,17 @@
                 vm.myChartOptions = {
                     series: {
                         lines: {
-                            show: true
+                            show: false
                         },
                         points: {
-                            show: true
+                            show: true,
+                            radius: 4
+                        },
+                        splines: {
+                            show: true,
+                            tension: 0.2,
+                            lineWidth: 2,
+                            fill: 0.4
                         }
                     },
                     grid: {
