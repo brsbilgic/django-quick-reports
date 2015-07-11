@@ -44,7 +44,7 @@ class ReportChartView(generics.GenericAPIView):
         app_label = kwargs.get("app_label", None)
         model_name = kwargs.get("model_name", None)
 
-        ct = get_object_or_404(ContentType, model=model_name)
+        ct = get_object_or_404(ContentType, app_label=app_label, model=model_name)
         ct_class = ct.model_class()
 
         report_model = site.get_model(app_label, model_name)

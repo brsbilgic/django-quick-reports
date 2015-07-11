@@ -26,7 +26,7 @@ class ReportSite(object):
                     self._model_reports[app_label][model_name]["report_set"] = {}
 
                     for report in report_set:
-                        report_name = slugify(report["name"])
+                        report_name = slugify(u"%s"%report["name"])
                         self._model_reports[app_label][model_name]["report_set"][report_name] = report
 
     def get_model(self, app_label, model_name):

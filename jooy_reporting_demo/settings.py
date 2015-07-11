@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'jooy_reporting_demo.main',
+    'jooy_reporting_demo.blog',
     'jooy_reporting'
 )
 
