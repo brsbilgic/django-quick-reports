@@ -27,6 +27,8 @@ class ReportSite(object):
 
                     for report in report_set:
                         report_name = slugify(u"%s"%report["name"])
+
+                        assert report_name not in self._model_reports[app_label][model_name]["report_set"], "Duplicate report name '%s'" % report_name
                         self._model_reports[app_label][model_name]["report_set"][report_name] = report
 
     def get_model(self, app_label, model_name):
