@@ -7,6 +7,7 @@ setup(
     author_email="baris@jooysoft.com",
     description=("Ready-to-use class-based django reports"),
     license="BSD",
+    description="Ready-to-use class-based django reports",
     keywords="django report, django reporting",
     url="https://github.com/brsbilgic/django-quick-reports",
     packages=find_packages(),
