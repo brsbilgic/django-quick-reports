@@ -1,7 +1,7 @@
 # Django Quick Reports
 Ready-to-use django reporting tool
 
-![A report](docs/screenshot1.png?raw=true "A report")
+![A report](docs/source/sample_report1.png?raw=true "A report")
 
 # Problem & Solution
 In any project, there are couple of models that you want to track the information of how many instances created each day. For example, how many new users signed up today or how many new photos shared during this week etc. Django admin is very amazing tool and you can get these numbers by some custom filters. However, you need to apply the same filters every time you'd like to look at it. There are many django reporting tools as well but none of them easy to use even for developers. Quick Reports helps you to create daily reports for each model with very simple integration.
