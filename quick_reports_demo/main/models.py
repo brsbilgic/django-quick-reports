@@ -31,19 +31,6 @@ class Article(models.Model):
     def __unicode__(self):
         return self.title
 
-    class QuickReport():
-        date_field = "created_at"
-        report_set = (
-            {
-                "name": "Published",
-                "query": Q(status=1)
-            },
-            {
-                "name": "Draft",
-                "query": Q(status=0)
-            }
-        )
-
 
 class Comment(models.Model):
     article = models.ForeignKey(Article)

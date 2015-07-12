@@ -25,9 +25,3 @@ class Article(models.Model):
 
     class QuickReport():
         date_field = "created_at"
-        report_set = (
-            {
-                "name": "Published",
-                "query": Q(status=1)
-            },
-        )

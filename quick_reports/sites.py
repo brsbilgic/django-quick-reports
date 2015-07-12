@@ -19,7 +19,7 @@ class ReportSite(object):
                 if report_class is not None:
                     self._model_reports[app_label] = {}
 
-                    report_set = getattr(report_class, 'report_set', None)
+                    report_set = getattr(report_class, 'report_set', [])
 
                     self._model_reports[app_label][model_name] = {}
                     self._model_reports[app_label][model_name]["date_field"] = getattr(report_class, 'date_field', None)
