@@ -52,3 +52,6 @@ Add ``QuickReport`` class to any model that you want to have daily reports and s
  
  When you visit ``http://127.0.0.1:8000/reports/`` you can find your registered models and when you click any of them, you can see the report for last 14 days. 
  
+# Contact
+
+baris@jooysoft.com
