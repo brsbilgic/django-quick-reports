@@ -1,5 +1,5 @@
 # Django Quick Reports
-Ready-to-use django reporting tool
+Ready-to-use class-based django reports
 
 ![A report](docs/source/sample_report1.png?raw=true "A report")
 
