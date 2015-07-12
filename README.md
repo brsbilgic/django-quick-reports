@@ -1,5 +1,7 @@
 # Django Quick Reports
-Ready-to-use class-based django reports
+Ready-to-use class-based django reports. It is very simple reporting tool that allows you to track the number of django model objects created each day.
+
+[![Build Status](https://travis-ci.org/brsbilgic/django-quick-reports.svg?branch=master)](https://travis-ci.org/brsbilgic/django-quick-reports)
 
 ![A report](docs/source/sample_report1.png?raw=true "A report")
 
