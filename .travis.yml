@@ -1,8 +1,11 @@
 language: python
 python:
   - "2.7"
+env:
+  - DJANGO=1.7
+  - DJANGO=1.8
 
 install:
-  - pip install -r requirements.txt
+  - pip install -q Django==$DJANGO -r requirements.txt
 
 script: nosetests
