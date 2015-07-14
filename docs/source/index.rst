@@ -12,6 +12,9 @@ Content
 
    installation
    quickstart
+   modelfields
+   license
+   contact
 
 Indices and tables
 ==================
